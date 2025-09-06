@@ -1,14 +1,16 @@
-import Button from './components/ui/Button.tsx';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Footer from './components/layout/Footer.tsx';
 
 export default function App() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-white">
-      <Button size="default" color="white">
-        white
-      </Button>
-      <Button size="default" color="primary">
-        primary
-      </Button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<div>홈 화면</div>} />
+        <Route path="checking" element={<div>출석체크 화면</div>} />
+        <Route path="ranking" element={<div>랭킹보드 화면</div>} />
+        <Route path="my" element={<div>마이페이지 화면</div>} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
 }
