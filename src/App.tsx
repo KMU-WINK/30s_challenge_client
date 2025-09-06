@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/layout/Header.tsx';
 import Footer from './components/layout/Footer.tsx';
 
 export default function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<div>홈 화면</div>} />
         <Route path="checking" element={<div>출석체크 화면</div>} />
