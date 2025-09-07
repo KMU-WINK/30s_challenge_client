@@ -1,4 +1,3 @@
-import React from 'react';
 import { Icon } from '@iconify/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -29,7 +28,7 @@ const NAV = [
   },
 ];
 
-const Footer: React.FC = () => {
+export default function Footer() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
@@ -47,7 +46,9 @@ const Footer: React.FC = () => {
             key={item.key}
             type="button"
             onClick={() => navigate(item.path)}
-            className={`flex flex-1 flex-col items-center transition-colors ${isActive ? 'text-primary' : 'text-secondary hover:text-primary'}`}
+            className={`flex flex-1 flex-col items-center transition-colors ${
+              isActive ? 'text-primary' : 'text-secondary hover:text-primary'
+            }`}
             aria-current={isActive ? 'page' : undefined}
             aria-label={item.label}
           >
@@ -58,6 +59,4 @@ const Footer: React.FC = () => {
       })}
     </nav>
   );
-};
-
-export default Footer;
+}
