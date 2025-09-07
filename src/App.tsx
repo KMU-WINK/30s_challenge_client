@@ -1,18 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/layout/Header.tsx';
-import Footer from './components/layout/Footer.tsx';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes';
 
 export default function App() {
-  return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<div>홈 화면</div>} />
-        <Route path="checking" element={<div>출석체크 화면</div>} />
-        <Route path="ranking" element={<div>랭킹보드 화면</div>} />
-        <Route path="my" element={<div>마이페이지 화면</div>} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
