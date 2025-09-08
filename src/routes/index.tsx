@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Layout.tsx';
+import Home from '../pages/home/Home.tsx';
 import ChallengeSuccess from '../pages/home/pages/ChallengeSuccess.tsx';
 import ChallengeCreate from '../pages/home/pages/ChallengeCreate.tsx';
 
@@ -7,14 +8,14 @@ export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
-      { path: '/', element: <div>홈 화면</div>, handle: { topBarTitle: null } },
+      { path: '/', element: <Home />, handle: { topBarTitle: null } },
       {
-        path: '/challenge-create/challenge-success',
+        path: '/challenge/success',
         element: <ChallengeSuccess />,
         handle: { hideTopBar: true, hideFooter: true },
       },
       {
-        path: '/challenge-create',
+        path: '/challenge/join',
         element: <ChallengeCreate />,
         handle: { topBarTitle: null },
       },
