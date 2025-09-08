@@ -1,11 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Layout.tsx';
+import Home from '../pages/home/Home.tsx';
 
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
-      { path: '/', element: <div>홈 화면</div>, handle: { topBarTitle: null } },
+      { path: '/', element: <Home />, handle: { topBarTitle: null } },
       {
         path: '/checking',
         element: <div>출석체크 화면</div>,
