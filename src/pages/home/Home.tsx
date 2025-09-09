@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react';
+import ChallengeIcon from '../../components/ui/ChallengeIcon.tsx';
 
 export default function Home() {
   return (
@@ -15,6 +16,20 @@ export default function Home() {
             </span>
           </div>
           <Icon icon="ic:round-plus" className="h-6 w-6" />
+        </div>
+        <div className="flex justify-start gap-5">
+          <ChallengeIcon
+            label="run"
+            size="lg"
+            bgColor="bg-primary-background"
+            iconColor="text-primary"
+          />
+          <ChallengeIcon
+            label="bed"
+            size="lg"
+            bgColor="bg-primary-background"
+            iconColor="text-primary"
+          />
         </div>
       </section>
       <section className="flex w-full flex-col gap-5 rounded-lg bg-white p-3 shadow-base">
