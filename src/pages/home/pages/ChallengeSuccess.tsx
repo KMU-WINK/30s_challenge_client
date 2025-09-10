@@ -1,0 +1,39 @@
+import React from 'react';
+import Button from '../../../components/ui/Button.tsx';
+import ChallengeStatus from '../../../components/ui/ChallengeStatus.tsx';
+import ChallengeCodeBox from '../components/ChallengeCodeBox.tsx';
+
+const ChallengeSuccess: React.FC = () => {
+  const handleConfirm = () => {
+    console.log('확인 버튼 클릭됨');
+  };
+
+  return (
+    <div className="inline-flex h-[852px] w-96 flex-col items-start justify-start overflow-hidden bg-white">
+      {/* 상단 상태바 (간단히 유지, 실제 앱에서는 생략 가능) */}
+
+      {/* 중앙 컨텐츠 */}
+      <div className="flex flex-1 flex-col items-start justify-start gap-24 self-stretch p-10">
+        <div className="flex flex-1 flex-col items-center justify-center gap-6 self-stretch">
+          {/* ChallengeStatus 사용 */}
+          <ChallengeStatus
+            title="챌린지 개설 완료!"
+            description="고유코드를 공유해 친구와 함께 도전하세요"
+          />
+
+          {/* 고유코드 박스 */}
+          <ChallengeCodeBox code="123456" />
+        </div>
+
+        {/* 하단 버튼 */}
+        <div className="self-stretch">
+          <Button size="large" color="primary" onClick={handleConfirm}>
+            확인
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ChallengeSuccess;
