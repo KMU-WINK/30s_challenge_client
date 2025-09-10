@@ -10,7 +10,7 @@ const CHALLENGE_ICONS: Record<ChallengeIconLabel, string> = {
   exercise: 'mdi:weight-lifter',
 };
 
-type ChallengeIconSize = 'default' | 'lg';
+type ChallengeIconSize = 'default' | 'small';
 
 interface ChallengeIconProps
   extends Omit<IconProps, 'icon' | 'width' | 'height' | 'color'> {
@@ -30,8 +30,8 @@ export default function ChallengeIcon({
   const icon = CHALLENGE_ICONS[label];
 
   const sizeMap = {
-    default: 26,
-    lg: 40,
+    default: 40,
+    small: 26,
   };
 
   const iconSize = sizeMap[size];

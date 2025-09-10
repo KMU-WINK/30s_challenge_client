@@ -6,26 +6,24 @@ import Footer from '../components/layout/Footer';
 const Layout = () => {
   const location = useLocation();
   const isHome = location.pathname === '/';
-  const isChallengeCreate = location.pathname === '/challenge-create';
 
   const matches = useMatches();
   const current = matches[matches.length - 1];
 
-  const topBarTitle =
-    (current?.handle as { topBarTitle?: string | null })?.topBarTitle ?? null;
-  const hideFooter =
-    (current?.handle as { hideFooter?: boolean })?.hideFooter ?? false;
-  const hideTopBar =
-    (current?.handle as { hideTopBar?: boolean })?.hideTopBar ?? false;
+  const {
+    topBarTitle = null,
+    hideTopBar = false,
+    hideFooter = false,
+  } = (current?.handle as {
+    topBarTitle?: string | null;
+    hideTopBar?: boolean;
+    hideFooter?: boolean;
+  }) ?? {};
 
   return (
-    <div className="flex h-screen w-full flex-col gap-5">
-      {isHome || isChallengeCreate ? (
-        <Header />
-      ) : (
-        !hideTopBar && <TopBar>{topBarTitle}</TopBar>
-      )}
-      <main>
+    <div className="flex min-h-dvh w-full flex-col gap-5">
+      {!hideTopBar && (isHome ? <Header /> : <TopBar>{topBarTitle}</TopBar>)}
+      <main className="min-h-0 flex-1 overflow-hidden">
         <Outlet />
       </main>
       {!hideFooter && <Footer />}
