@@ -13,9 +13,9 @@ const Layout = () => {
     (current?.handle as { topBarTitle?: string | null })?.topBarTitle ?? null;
 
   return (
-    <div className="flex h-screen w-full flex-col gap-5">
+    <div className="flex min-h-dvh w-full flex-col gap-5">
       {isHome ? <Header /> : <TopBar>{topBarTitle}</TopBar>}
-      <main>
+      <main className="min-h-0 flex-1 overflow-hidden">
         <Outlet />
       </main>
       <Footer />

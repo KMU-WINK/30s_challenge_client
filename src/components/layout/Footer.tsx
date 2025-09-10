@@ -34,7 +34,7 @@ export default function Footer() {
   const currentPath = location.pathname;
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 flex w-full justify-center border-t border-neutral-100 bg-white px-6 py-3">
+    <nav className="sticky bottom-0 flex w-full justify-center border-t border-neutral-100 bg-white px-4 py-3">
       {NAV.map((item) => {
         const isActive =
           item.path === '/'
