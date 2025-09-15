@@ -30,7 +30,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`flex items-center justify-center rounded-xl ${SIZE_MAP[size]} ${COLOR_MAP[color]}`}
+      className={`flex w-full items-center justify-center rounded-xl ${SIZE_MAP[size]} ${COLOR_MAP[color]}`}
       {...rest}
     >
       {children}

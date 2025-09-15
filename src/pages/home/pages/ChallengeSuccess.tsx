@@ -9,7 +9,7 @@ const ChallengeSuccess: React.FC = () => {
   };
 
   return (
-    <div className="inline-flex h-[852px] w-96 flex-col items-start justify-start overflow-hidden bg-white">
+    <div className="inline-flex h-screen w-screen flex-col items-start justify-start overflow-hidden bg-white">
       {/* 상단 상태바 (간단히 유지, 실제 앱에서는 생략 가능) */}
 
       {/* 중앙 컨텐츠 */}
