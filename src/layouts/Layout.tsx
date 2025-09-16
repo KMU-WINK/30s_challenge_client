@@ -6,6 +6,7 @@ import Footer from '../components/layout/Footer';
 const Layout = () => {
   const location = useLocation();
   const isHome = location.pathname === '/';
+  const isChallengeCreate = location.pathname === '/challenge-create';
 
   const matches = useMatches();
   const current = matches[matches.length - 1];
@@ -19,7 +20,11 @@ const Layout = () => {
 
   return (
     <div className="flex h-screen w-full flex-col gap-5">
-      {isHome ? <Header /> : !hideTopBar && <TopBar>{topBarTitle}</TopBar>}
+      {isHome || isChallengeCreate ? (
+        <Header />
+      ) : (
+        !hideTopBar && <TopBar>{topBarTitle}</TopBar>
+      )}
       <main>
         <Outlet />
       </main>

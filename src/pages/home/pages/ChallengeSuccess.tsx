@@ -10,12 +10,8 @@ const ChallengeSuccess: React.FC = () => {
 
   return (
     <div className="inline-flex h-screen w-screen flex-col items-start justify-start overflow-hidden bg-white">
-      {/* 상단 상태바 (간단히 유지, 실제 앱에서는 생략 가능) */}
-
-      {/* 중앙 컨텐츠 */}
       <div className="flex flex-1 flex-col items-start justify-start gap-24 self-stretch p-10">
         <div className="flex flex-1 flex-col items-center justify-center gap-6 self-stretch">
-          {/* ChallengeStatus 사용 */}
           <ChallengeStatus
             title="챌린지 개설 완료!"
             description="고유코드를 공유해 친구와 함께 도전하세요"

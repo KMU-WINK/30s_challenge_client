@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Layout.tsx';
 import ChallengeSuccess from '../pages/home/pages/ChallengeSuccess.tsx';
+import ChallengeCreate from '../pages/home/pages/ChallengeCreate.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -11,6 +12,11 @@ export const router = createBrowserRouter([
         path: '/challenge-create/challenge-success',
         element: <ChallengeSuccess />,
         handle: { hideTopBar: true, hideFooter: true },
+      },
+      {
+        path: '/challenge-create',
+        element: <ChallengeCreate />,
+        handle: { topBarTitle: null },
       },
       {
         path: '/checking',
