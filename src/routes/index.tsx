@@ -2,6 +2,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Layout.tsx';
 import ChallengeSuccess from '../pages/home/pages/ChallengeSuccess.tsx';
 import ChallengeCreate from '../pages/home/pages/ChallengeCreate.tsx';
+import MyPage from '../pages/mypage/pages/MyPage.tsx';
+import MyProfile from '../pages/mypage/pages/MyProfile.tsx';
+import ChallengeDetail from '../pages/mypage/pages/ChallengeDetail.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -35,8 +38,18 @@ export const router = createBrowserRouter([
       },
       {
         path: 'my',
-        element: <div>마이페이지</div>,
+        element: <MyPage />,
         handle: { topBarTitle: '마이 페이지' },
+      },
+      {
+        path: 'my/MyProfile',
+        element: <MyProfile />,
+        handle: { topBarTitle: '내 정보 관리' },
+      },
+      {
+        path: 'Challengedetail',
+        element: <ChallengeDetail />,
+        handle: { topBarTitle: '챌린지 상세 조회' },
       },
       {
         path: 'my/:userId',

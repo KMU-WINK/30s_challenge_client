@@ -10,7 +10,7 @@ export default function TopBar({ children }: { children: ReactNode }) {
       <button type="button" onClick={() => navigate(-1)}>
         <Icon icon="mdi:chevron-left" className="h-6 w-6"></Icon>
       </button>
-      {children}
+      <div className="text-xl font-bold leading-7 text-black">{children}</div>
     </div>
   );
 }
