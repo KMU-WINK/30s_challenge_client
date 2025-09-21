@@ -1,9 +1,8 @@
-// src/pages/.../InfoBox.tsx
 import React, { useState } from 'react';
 import { Icon } from '@iconify/react';
-import DateField from '../../../components/ui/inputBox/DateField.tsx';
-import FormField from '../../../components/ui/inputBox/FormField.tsx';
-import PersonCountField from '../../../components/ui/inputBox/PersonCountField.tsx';
+import DateField from './inputBox/DateField.tsx';
+import FormField from './inputBox/FormField.tsx';
+import PersonCountField from './inputBox/PersonCountField.tsx';
 
 const InfoBox: React.FC = () => {
   // 로컬 상태 선언
@@ -11,10 +10,10 @@ const InfoBox: React.FC = () => {
   const [description, setDescription] = useState<string>('');
 
   return (
-    <div className="flex flex-col gap-5 self-stretch rounded-lg bg-white p-3 shadow-md">
+    <div className="flex flex-col gap-5 self-stretch rounded-lg bg-white p-3 shadow-base">
       {/* 기본 정보 입력 */}
       <div className="flex items-center gap-3">
-        <Icon icon="fluent:pen-24-filled" width="16" height="16" />
+        <Icon icon="fluent:pen-24-filled" className="h-4 w-4" />
         <div className="text-lg font-semibold text-black">기본 정보 입력</div>
       </div>
 
@@ -36,7 +35,7 @@ const InfoBox: React.FC = () => {
           <div className="flex-1">
             <FormField
               label="챌린지 이름"
-              placeholder="알고리즘 복습하기"
+              placeholder="예: 알고리즘 복습하기"
               value={challengeName}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setChallengeName(e.target.value)
@@ -55,8 +54,8 @@ const InfoBox: React.FC = () => {
         />
 
         <div className="flex w-full gap-3">
-          <DateField label="시작일" />
-          <DateField label="종료일" />
+          <DateField label="시작일" align="start" />
+          <DateField label="종료일" align="end" />
         </div>
 
         <PersonCountField label="인원 수 설정" />

@@ -35,7 +35,7 @@ const PersonCountField: React.FC<PersonCountFieldProps> = ({ label }) => {
 
         {/* 클릭 가능한 "입력" 박스 */}
         <div
-          className="flex cursor-pointer items-center justify-between rounded-lg border border-zinc-200 bg-white p-3 shadow-sm transition-colors hover:border-primary"
+          className="flex cursor-pointer items-center justify-between rounded-lg border border-zinc-200 bg-white p-2.5 shadow-sm transition-colors hover:border-primary"
           onClick={toggleDropdown}
         >
           {/* 선택된 인원 수 또는 플레이스홀더 텍스트를 표시합니다. */}
@@ -47,7 +47,7 @@ const PersonCountField: React.FC<PersonCountFieldProps> = ({ label }) => {
           {/* 드롭다운 화살표 아이콘 */}
           <Icon
             icon="heroicons:chevron-down"
-            className={`h-5 w-5 text-neutral-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+            className={`h-4 w-4 text-neutral-700 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
           />
         </div>
       </div>
@@ -58,7 +58,7 @@ const PersonCountField: React.FC<PersonCountFieldProps> = ({ label }) => {
           {counts.map((count, index) => (
             <div
               key={count}
-              className={`flex cursor-pointer items-center justify-center px-3 py-2 transition-colors hover:bg-success ${index < counts.length - 1 ? 'border-b-[0.50px] border-neutral-200' : ''}`}
+              className={`flex cursor-pointer items-center justify-center px-3 py-2 transition-colors hover:bg-success-background ${index < counts.length - 1 ? 'border-b-[0.50px] border-neutral-200' : ''}`}
               onClick={() => handleSelect(count)}
             >
               <span className="text-sm font-normal leading-tight text-neutral-500">
