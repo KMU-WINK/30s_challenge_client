@@ -25,7 +25,11 @@ export default function Home() {
               진행 중인 챌린지
             </span>
           </div>
-          <Icon icon="ic:round-plus" className="h-6 w-6" />
+          <Icon
+            icon="ic:round-plus"
+            onClick={() => setIsOpen(true)}
+            className="h-6 w-6"
+          />
         </div>
 
         {hasChallenges ? (
@@ -95,10 +99,9 @@ export default function Home() {
           >
             개설하기
           </Button>
-
-          {isOpen && <ChallengeJoinModal onClose={() => setIsOpen(false)} />}
         </div>
       )}
+      {isOpen && <ChallengeJoinModal onClose={() => setIsOpen(false)} />}
     </main>
   );
 }
