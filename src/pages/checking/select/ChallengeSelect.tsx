@@ -16,28 +16,25 @@ export default function ChallengeSelect() {
           id={1}
           name="러닝하기"
           icon="run"
-          startAt="2025-09-01"
-          endAt="2025-09-30"
+          startAt="2025.09.01"
+          endAt="2025.09.30"
           participants={5}
-          progress={0.4}
         />
         <ChallengeCard
           id={2}
           name="7시 기상하기"
           icon="bed"
-          startAt="2025-09-01"
-          endAt="2025-09-30"
+          startAt="2025.09.01"
+          endAt="2025.10.30"
           participants={5}
-          progress={0.4}
         />
         <ChallengeCard
           id={3}
           name="백준 풀기"
           icon="coding"
-          startAt="2025-09-01"
-          endAt="2025-09-30"
+          startAt="2025.09.01"
+          endAt="2025.11.30"
           participants={5}
-          progress={0.4}
         />
       </section>
     </main>
