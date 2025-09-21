@@ -53,10 +53,7 @@ export default function ChallengeIconPicker({ value, onChange }: Props) {
       {open && (
         <div className="absolute inset-0 z-50 flex items-center justify-center">
           <div className="absolute inset-0 bg-black/40" />
-          <div
-            ref={ref}
-            className="relative z-10 flex w-80 flex-col gap-8 rounded-lg bg-white px-6 py-7"
-          >
+          <div className="relative z-10 flex w-80 flex-col gap-8 rounded-lg bg-white px-6 py-7">
             <div className="flex flex-col justify-start">
               <span className="text-base font-semibold text-neutral-700">
                 아이콘 선택
