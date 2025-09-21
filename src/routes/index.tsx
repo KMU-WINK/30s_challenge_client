@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.tsx';
 import Home from '../pages/home/Home.tsx';
 import ChallengeSuccess from '../pages/challenge/success/ChallengeSuccess.tsx';
 import ChallengeCreate from '../pages/challenge/create/ChallengeCreate.tsx';
+import ChallengeSelect from '../pages/checking/select/ChallengeSelect.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/checking',
-        element: <div>출석체크 화면</div>,
+        element: <ChallengeSelect />,
         handle: { topBarTitle: '챌린지 선택' },
       },
       {
