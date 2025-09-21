@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button.tsx';
 import ChallengeIcon from '../../components/ui/ChallengeIcon.tsx';
-import RankCard from './components/rank-card.tsx';
+import RankCard from './components/RankCard.tsx';
+import ChallengeJoinModal from './components/ChallengeJoinModal.tsx';
 
 export default function Home() {
   const activeChallenges: Array<{ id: number }> = [];
 
   const hasChallenges = activeChallenges.length > 0;
+
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <main className="flex min-h-0 w-full flex-1 flex-col items-center gap-6 px-6">
@@ -84,13 +88,15 @@ export default function Home() {
             참여하기
           </Button>
           <Button
-            to="/challenge/create"
+            onClick={() => setIsOpen(true)}
             color="primary"
             size="default"
             className="w-full"
           >
             개설하기
           </Button>
+
+          {isOpen && <ChallengeJoinModal onClose={() => setIsOpen(false)} />}
         </div>
       )}
     </main>
