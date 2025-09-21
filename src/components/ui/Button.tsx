@@ -1,9 +1,11 @@
-import type { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size: 'small' | 'default' | 'large';
   color: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'white';
-  children: React.ReactNode;
+  children: ReactNode;
+  to?: string;
 }
 
 const SIZE_MAP: { [k in ButtonProps['size']]: string } = {
@@ -26,13 +28,22 @@ export default function Button({
   size,
   color,
   children,
+  to,
+  className = '',
   ...rest
 }: ButtonProps) {
+  const classes = `inline-flex items-center justify-center rounded-xl ${SIZE_MAP[size]} ${COLOR_MAP[color]} ${className}`;
+
+  if (to) {
+    return (
+      <Link to={to} className={classes}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    <button
-      className={`flex w-full items-center justify-center rounded-xl ${SIZE_MAP[size]} ${COLOR_MAP[color]}`}
-      {...rest}
-    >
+    <button className={classes} {...rest}>
       {children}
     </button>
   );
