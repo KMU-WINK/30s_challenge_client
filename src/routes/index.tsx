@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Layout.tsx';
 import Home from '../pages/home/Home.tsx';
-import ChallengeSuccess from '../pages/challenge/pages/ChallengeSuccess.tsx';
-import ChallengeCreate from '../pages/challenge/pages/ChallengeCreate.tsx';
+import ChallengeSuccess from '../pages/challenge/success/ChallengeSuccess.tsx';
+import ChallengeCreate from '../pages/challenge/create/ChallengeCreate.tsx';
 
 export const router = createBrowserRouter([
   {

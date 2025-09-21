@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../../../components/ui/Button.tsx';
-import ChallengeStatus from '../components/success/ChallengeStatus.tsx';
-import ChallengeCodeBox from '../components/success/ChallengeCodeBox.tsx';
+import ChallengeStatus from './components/ChallengeStatus.tsx';
+import ChallengeCodeBox from './components/ChallengeCodeBox.tsx';
 
 const ChallengeSuccess: React.FC = () => {
   return (

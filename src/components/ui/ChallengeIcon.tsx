@@ -1,6 +1,11 @@
 import { Icon as Iconify, type IconProps } from '@iconify/react';
 
-type ChallengeIconLabel = 'run' | 'bed' | 'coding' | 'study' | 'exercise';
+export type ChallengeIconLabel =
+  | 'run'
+  | 'bed'
+  | 'coding'
+  | 'study'
+  | 'exercise';
 
 const CHALLENGE_ICONS: Record<ChallengeIconLabel, string> = {
   run: 'healthicons:exercise-running',

@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../../../components/ui/Button.tsx';
-import InfoBox from '../components/create/InfoBox.tsx';
+import InfoBox from './components/InfoBox.tsx';
 
 const ChallengeCreate: React.FC = () => {
   return (

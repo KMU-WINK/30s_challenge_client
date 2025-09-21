@@ -3,11 +3,14 @@ import { Icon } from '@iconify/react';
 import DateField from './inputBox/DateField.tsx';
 import FormField from './inputBox/FormField.tsx';
 import PersonCountField from './inputBox/PersonCountField.tsx';
+import ChallengeIconPicker from './ChallengeIconPicker.tsx';
+import type { ChallengeIconLabel } from '../../../../components/ui/ChallengeIcon.tsx';
 
 const InfoBox: React.FC = () => {
   // 로컬 상태 선언
   const [challengeName, setChallengeName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
+  const [chosen, setChosen] = useState<ChallengeIconLabel | null>(null);
 
   return (
     <div className="flex flex-col gap-5 self-stretch rounded-lg bg-white p-3 shadow-base">
@@ -22,14 +25,9 @@ const InfoBox: React.FC = () => {
         {/* 챌린지 이름 (왼쪽에 동그란 원 추가) */}
         <div className="flex items-center gap-4 self-stretch">
           {/* 동그란 원 */}
-          <div className="inline-flex items-center justify-center gap-2.5 rounded-full bg-zinc-100 p-5">
-            <div className="relative flex h-6 w-6 items-center justify-center">
-              {/*아이콘 */}
-              <Icon
-                icon="heroicons-outline:plus"
-                className="h-5 w-5 text-neutral-500"
-              />
-            </div>
+          <div className="flex items-center gap-3">
+            {/* 기존 + 아이콘 자리 */}
+            <ChallengeIconPicker value={chosen} onChange={setChosen} />
           </div>
 
           <div className="flex-1">
