@@ -1,12 +1,24 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Layout.tsx';
 import Home from '../pages/home/Home.tsx';
+import ChallengeSuccess from '../pages/challenge/pages/ChallengeSuccess.tsx';
+import ChallengeCreate from '../pages/challenge/pages/ChallengeCreate.tsx';
 
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       { path: '/', element: <Home />, handle: { topBarTitle: null } },
+      {
+        path: '/challenge/join',
+        element: <ChallengeCreate />,
+        handle: { topBarTitle: '챌린지 개설하기' },
+      },
+      {
+        path: '/challenge/success',
+        element: <ChallengeSuccess />,
+        handle: { hideTopBar: true, hideFooter: true },
+      },
       {
         path: '/checking',
         element: <div>출석체크 화면</div>,

@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import Button from '../../components/ui/Button.tsx';
 import ChallengeIcon from '../../components/ui/ChallengeIcon.tsx';
 import RankCard from './components/RankCard.tsx';
-import ChallengeJoinModal from './components/ChallengeJoinModal.tsx';
+import ChallengeJoinModal from '../challenge/components/ChallengeJoinModal.tsx';
 
 export default function Home() {
   const activeChallenges: Array<{ id: number }> = [];
@@ -84,7 +84,7 @@ export default function Home() {
       {!hasChallenges && (
         <div className="flex w-full items-center justify-center gap-6">
           <Button
-            to="/challenge/join"
+            onClick={() => setIsOpen(true)}
             color="white"
             size="default"
             className="w-full"
@@ -92,7 +92,7 @@ export default function Home() {
             참여하기
           </Button>
           <Button
-            onClick={() => setIsOpen(true)}
+            to="/challenge/join"
             color="primary"
             size="default"
             className="w-full"

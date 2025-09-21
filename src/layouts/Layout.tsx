@@ -9,16 +9,24 @@ const Layout = () => {
 
   const matches = useMatches();
   const current = matches[matches.length - 1];
-  const topBarTitle =
-    (current?.handle as { topBarTitle?: string | null })?.topBarTitle ?? null;
+
+  const {
+    topBarTitle = null,
+    hideTopBar = false,
+    hideFooter = false,
+  } = (current?.handle as {
+    topBarTitle?: string | null;
+    hideTopBar?: boolean;
+    hideFooter?: boolean;
+  }) ?? {};
 
   return (
     <div className="flex min-h-dvh w-full flex-col gap-5">
-      {isHome ? <Header /> : <TopBar>{topBarTitle}</TopBar>}
+      {!hideTopBar && (isHome ? <Header /> : <TopBar>{topBarTitle}</TopBar>)}
       <main className="min-h-0 flex-1 overflow-hidden">
         <Outlet />
       </main>
-      <Footer />
+      {!hideFooter && <Footer />}
     </div>
   );
 };
