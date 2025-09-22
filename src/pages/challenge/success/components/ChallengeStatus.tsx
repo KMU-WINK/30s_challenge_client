@@ -12,14 +12,9 @@ const ChallengeStatus: React.FC<ChallengeStatusProps> = ({
 }) => {
   return (
     <div className="flex flex-col items-center justify-center gap-6 p-4 text-center">
-      <Icon
-        icon="streamline-color:party-popper-flat"
-        width="80"
-        height="80"
-        className="text-gray-800"
-      />
-      <div className="text-2xl font-bold text-gray-800">{title}</div>
-      <div className="font-['Pretendard_Variable'] text-base font-normal leading-normal text-neutral-500">
+      <Icon icon="streamline-color:party-popper-flat" className="h-20 w-20" />
+      <div className="text-2xl font-medium text-black">{title}</div>
+      <div className="text-base font-normal text-neutral-500">
         {description}
       </div>
     </div>

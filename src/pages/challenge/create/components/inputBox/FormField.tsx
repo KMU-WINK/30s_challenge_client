@@ -26,7 +26,7 @@ const FormField: React.FC<FormFieldProps> = ({
       </div>
 
       {/* 입력 박스 */}
-      <div className="flex h-10 items-center gap-2 self-stretch rounded-lg bg-white px-3 outline outline-1 outline-offset-[-1px] outline-neutral-300 transition-colors hover:outline-primary">
+      <div className="flex h-10 items-center gap-2 rounded-lg bg-white px-3 outline outline-1 outline-offset-[-1px] outline-neutral-300 transition-colors hover:outline-primary">
         {children ? (
           children
         ) : (

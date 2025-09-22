@@ -1,29 +1,28 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Layout.tsx';
-import ChallengeSuccess from '../pages/home/pages/ChallengeSuccess.tsx';
-import ChallengeCreate from '../pages/home/pages/ChallengeCreate.tsx';
-import MyPage from '../pages/mypage/pages/MyPage.tsx';
-import MyProfile from '../pages/mypage/pages/MyProfile.tsx';
-import ChallengeDetail from '../pages/mypage/pages/ChallengeDetail.tsx';
+import Home from '../pages/home/Home.tsx';
+import ChallengeSuccess from '../pages/challenge/success/ChallengeSuccess.tsx';
+import ChallengeCreate from '../pages/challenge/create/ChallengeCreate.tsx';
+import ChallengeSelect from '../pages/checking/select/ChallengeSelect.tsx';
 
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
-      { path: '/', element: <div>홈 화면</div>, handle: { topBarTitle: null } },
+      { path: '/', element: <Home />, handle: { topBarTitle: null } },
       {
-        path: '/challenge-create/challenge-success',
+        path: '/challenge/join',
+        element: <ChallengeCreate />,
+        handle: { topBarTitle: '챌린지 개설하기' },
+      },
+      {
+        path: '/challenge/success',
         element: <ChallengeSuccess />,
         handle: { hideTopBar: true, hideFooter: true },
       },
       {
-        path: '/challenge-create',
-        element: <ChallengeCreate />,
-        handle: { topBarTitle: null },
-      },
-      {
         path: '/checking',
-        element: <div>출석체크 화면</div>,
+        element: <ChallengeSelect />,
         handle: { topBarTitle: '챌린지 선택' },
       },
       {
@@ -38,18 +37,8 @@ export const router = createBrowserRouter([
       },
       {
         path: 'my',
-        element: <MyPage />,
+        element: <div>마이페이지</div>,
         handle: { topBarTitle: '마이 페이지' },
-      },
-      {
-        path: 'my/MyProfile',
-        element: <MyProfile />,
-        handle: { topBarTitle: '내 정보 관리' },
-      },
-      {
-        path: 'Challengedetail',
-        element: <ChallengeDetail />,
-        handle: { topBarTitle: '챌린지 상세 조회' },
       },
       {
         path: 'my/:userId',
