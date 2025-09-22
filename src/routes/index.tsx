@@ -4,6 +4,8 @@ import Home from '../pages/home/Home.tsx';
 import ChallengeSuccess from '../pages/challenge/success/ChallengeSuccess.tsx';
 import ChallengeCreate from '../pages/challenge/create/ChallengeCreate.tsx';
 import ChallengeSelect from '../pages/checking/select/ChallengeSelect.tsx';
+import LoginSuccess from '../pages/login/pages/LoginSuccess.tsx';
+import CheckingSuccess from '../pages/checking/select/CheckingSuccess.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +33,11 @@ export const router = createBrowserRouter([
         handle: { topBarTitle: '챌린지 인증' },
       },
       {
+        path: '/checking/:challengeId/checkingsuccess',
+        element: <CheckingSuccess />,
+        handle: { hideTopBar: true, hideFooter: true },
+      },
+      {
         path: '/ranking',
         element: <div>랭킹보드 화면</div>,
         handle: { topBarTitle: '랭킹보드' },
@@ -44,6 +51,11 @@ export const router = createBrowserRouter([
         path: 'my/:userId',
         element: <div>마이페이지</div>,
         handle: { topBarTitle: '내 정보 관리' },
+      },
+      {
+        path: '/login/loginsuccess',
+        element: <LoginSuccess />,
+        handle: { hideTopBar: true, hideFooter: true },
       },
     ],
   },
