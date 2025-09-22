@@ -57,12 +57,12 @@ export const router = createBrowserRouter([
       {
         path: '/login/signup',
         element: <Signup />,
-        handle: { topBarTitle: '회원가입' },
+        handle: { topBarTitle: '회원가입', hideFooter: true },
       },
       {
         path: '/login/signup/signupPW',
         element: <SignupPW />,
-        handle: { topBarTitle: '회원가입' },
+        handle: { topBarTitle: '회원가입', hideFooter: true },
       },
     ],
   },
