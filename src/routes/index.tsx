@@ -5,11 +5,17 @@ import ChallengeSuccess from '../pages/challenge/success/ChallengeSuccess.tsx';
 import ChallengeCreate from '../pages/challenge/create/ChallengeCreate.tsx';
 import ChallengeSelect from '../pages/checking/select/ChallengeSelect.tsx';
 import ChallengeVerify from '../pages/checking/verify/ChallengeVerify.tsx';
+import LoginPage from '../pages/login/pages/Login.tsx';
 
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
+      {
+        path: '/login',
+        element: <LoginPage />,
+        handle: { hideTopBar: true, hideFooter: true },
+      },
       { path: '/', element: <Home />, handle: { topBarTitle: null } },
       {
         path: '/challenge/join',
