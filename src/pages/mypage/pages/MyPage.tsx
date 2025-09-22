@@ -1,14 +1,15 @@
-import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 import ProfileCard from '../components/ProfileCard.tsx';
 import MyChallenge from '../components/MyChallenge.tsx';
+import type { SimpleUserResponse } from '../../../types/api/user.ts';
 
-const myPage: React.FC = () => {
+export default function MyPage() {
+  const me = useLoaderData() as SimpleUserResponse;
+
   return (
     <div className="flex flex-1 flex-col items-start justify-start gap-6 self-stretch px-6">
-      <ProfileCard name="홍길동" />
+      <ProfileCard id={me.id} name={me.name} />
       <MyChallenge />
     </div>
   );
-};
-
-export default myPage;
+}

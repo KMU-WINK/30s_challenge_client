@@ -1,8 +1,8 @@
 import ChallengeIcon from '../../../../components/ui/ChallengeIcon';
 import { Icon } from '@iconify/react';
-import type { Challenge } from '../../../../types/challenge';
+import type { SimpleChallengeResponse } from '../../../../types/api/challenge.ts';
 
-type Props = Challenge & {
+type Props = SimpleChallengeResponse & {
   participants?: number;
   progress?: number;
 };
@@ -10,7 +10,7 @@ type Props = Challenge & {
 const clamp01 = (n: number) => Math.max(0, Math.min(1, n));
 
 function parseLocalDate(d: string) {
-  const [y, m, day] = d.split('.').map(Number);
+  const [y, m, day] = d.split('-').map(Number);
   return new Date(y, (m ?? 1) - 1, day ?? 1); // 로컬 자정
 }
 

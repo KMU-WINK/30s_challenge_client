@@ -1,41 +1,94 @@
-import React from 'react';
-import InputBox from '../components/InputBox.tsx';
-import Avatar from '../../../components/ui/Avatar.tsx';
+import { useLoaderData } from 'react-router-dom';
+import Avatar from '../../../components/ui/Avatar';
+import Badge from '../../../components/ui/Badge';
+import ChallengeIcon from '../../../components/ui/ChallengeIcon.tsx';
+import type { ChallengeResponse } from '../../../types/api/challenge';
+import type { Status } from '../components/MyChallenge.tsx';
 
-const MyProfile: React.FC = () => {
-  const participants = [
-    { id: 1, name: '홍길동' },
-    { id: 2, name: '홍길동' },
-    { id: 3, name: '김철수' },
-    { id: 4, name: '김철수' },
-    { id: 5, name: '김철수' },
-    { id: 6, name: '김철수' },
-  ];
+type Participant = { id: string; name: string };
+
+type ChallengeDetailProps = ChallengeResponse & {
+  status: Status;
+};
+
+interface ChallengeDetailResponse {
+  challenge: ChallengeDetailProps | null;
+  participants: Participant[];
+}
+
+export default function ChallengeDetail() {
+  const data = useLoaderData<ChallengeDetailResponse>();
+
+  const challenge = data?.challenge ?? null;
+
+  const participants: Participant[] =
+    data?.participants ??
+    (import.meta.env.DEV
+      ? [
+          { id: '1', name: '홍길동' },
+          { id: '2', name: '홍길동' },
+          { id: '3', name: '홍길동' },
+          { id: '4', name: '홍길동' },
+        ]
+      : []);
+
   return (
-    <div className="flex flex-1 flex-col items-start justify-start gap-6 self-stretch px-6">
-      <div className="inline-flex flex-col items-start justify-start gap-5 self-stretch rounded-lg bg-white p-3 shadow-md">
-        <div className="text-lg font-semibold leading-7 text-black">
-          챌린지 상세
-        </div>
-        <InputBox />
-      </div>
+    <main className="flex min-h-0 w-full flex-1 flex-col items-center gap-6 px-6">
+      <section className="flex min-h-0 w-full flex-1 flex-col gap-5 rounded-lg bg-white p-4 shadow-base">
+        <span className="text-lg font-semibold">챌린지 상세</span>
 
-      <div className="inline-flex flex-col items-start justify-start gap-5 self-stretch rounded-lg bg-white p-3 shadow-md">
-        {/* 섹션 제목 */}
-        <div className="text-lg font-semibold leading-7 text-black">
-          참여자 상세
-        </div>
-
-        {/* 참여자 목록을 담는 컨테이너 */}
-        <div className="grid grid-cols-2 gap-4 self-stretch">
-          {participants.map((participant) => (
-            <div key={participant.id}>
-              <Avatar name={participant.name} size="small" />
+        <div className="flex flex-col items-start justify-start gap-5 p-4">
+          <div className="flex items-center justify-start gap-4">
+            <ChallengeIcon
+              label={challenge?.icon ?? 'question'}
+              size="default"
+              bgColor="bg-primary-background"
+              iconColor="text-primary"
+            />
+            <div className="flex flex-col items-start justify-start gap-1">
+              <div className="flex items-start justify-start gap-4">
+                <span className="text-base font-semibold">챌린지 이름</span>
+                {/* status 유니온에 '—'가 없다면 조건부 렌더링 */}
+                {challenge?.status && <Badge status={challenge.status} />}
+              </div>
+              <div className="text-base font-medium text-neutral-500">
+                {challenge?.name ?? '—'}
+              </div>
             </div>
+          </div>
+
+          <div className="flex flex-col items-start justify-start gap-1">
+            <span className="text-base font-semibold">챌린지 설명</span>
+            <div className="text-base font-medium text-neutral-500">
+              {challenge?.description ?? '—'}
+            </div>
+          </div>
+
+          <div className="flex flex-col items-start justify-start gap-1">
+            <span className="text-base font-semibold">챌린지 기간</span>
+            <div className="text-base font-medium text-neutral-500">
+              {(challenge?.startAt ?? '—') + ' ~ ' + (challenge?.endAt ?? '—')}
+            </div>
+          </div>
+
+          <div className="flex flex-col items-start justify-start gap-1">
+            <span className="text-base font-semibold">참여자 수</span>
+            <div className="text-base font-medium text-neutral-500">
+              {(challenge?.limits ?? 0) + ' 명'}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="flex min-h-0 w-full flex-1 flex-col gap-5 rounded-lg bg-white p-4 shadow-base">
+        <div className="text-lg font-semibold">참여자 상세</div>
+
+        <div className="grid grid-cols-2 gap-4">
+          {participants.map((p) => (
+            <Avatar key={p.id} id={p.id} name={p.name} size="small" />
           ))}
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
-};
-export default MyProfile;
+}

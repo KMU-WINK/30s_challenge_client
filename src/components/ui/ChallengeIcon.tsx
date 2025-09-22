@@ -1,19 +1,8 @@
 import { Icon as Iconify, type IconProps } from '@iconify/react';
-
-export type ChallengeIconLabel =
-  | 'run'
-  | 'bed'
-  | 'coding'
-  | 'study'
-  | 'exercise';
-
-const CHALLENGE_ICONS: Record<ChallengeIconLabel, string> = {
-  run: 'healthicons:exercise-running',
-  bed: 'ion:bed',
-  coding: 'material-symbols:code-rounded',
-  study: 'mingcute:pencil-fill',
-  exercise: 'mdi:weight-lifter',
-};
+import {
+  CHALLENGE_ICONS,
+  type ChallengeIconLabel,
+} from '../../types/shared/icons.ts';
 
 type ChallengeIconSize = 'default' | 'small';
 

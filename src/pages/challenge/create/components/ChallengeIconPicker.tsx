@@ -1,8 +1,7 @@
 import { useRef, useState } from 'react';
 import { Icon } from '@iconify/react';
-import ChallengeIcon, {
-  type ChallengeIconLabel,
-} from '../../../../components/ui/ChallengeIcon.tsx';
+import ChallengeIcon from '../../../../components/ui/ChallengeIcon.tsx';
+import type { ChallengeIconLabel } from '../../../../types/shared/icons.ts';
 import Button from '../../../../components/ui/Button.tsx';
 
 const OPTIONS: ChallengeIconLabel[] = [

@@ -4,7 +4,7 @@ import DateField from './inputBox/DateField.tsx';
 import FormField from './inputBox/FormField.tsx';
 import PersonCountField from './inputBox/PersonCountField.tsx';
 import ChallengeIconPicker from './ChallengeIconPicker.tsx';
-import type { ChallengeIconLabel } from '../../../../components/ui/ChallengeIcon.tsx';
+import type { ChallengeIconLabel } from '../../../../types/shared/icons.ts';
 
 const InfoBox: React.FC = () => {
   // 로컬 상태 선언

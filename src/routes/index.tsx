@@ -7,6 +7,22 @@ import ChallengeSelect from '../pages/checking/select/ChallengeSelect.tsx';
 import ChallengeVerify from '../pages/checking/verify/ChallengeVerify.tsx';
 import LoginPage from '../pages/login/pages/Login.tsx';
 import Signup from '../pages/login/pages/Signup.tsx';
+import MyPage from '../pages/mypage/pages/MyPage.tsx';
+import MyProfile from '../pages/mypage/pages/MyProfile.tsx';
+import ChallengeDetail from '../pages/mypage/pages/ChallengeDetail.tsx';
+// import { getMyInfo } from '../api/user.ts';
+// async function meLoader() { try { return await getMyInfo(); } catch (e) { throw e; } }
+import type { UserResponse } from '../types/api/user.ts';
+
+export async function myPageLoader(): Promise<UserResponse> {
+  if (import.meta.env.DEV) {
+    return { id: '1', name: '홍길동', email: '@google.com' };
+  }
+
+  const res = await fetch('/api/me');
+  if (!res.ok) throw new Error('failed to load');
+  return res.json();
+}
 
 export const router = createBrowserRouter([
   {
@@ -45,13 +61,20 @@ export const router = createBrowserRouter([
       },
       {
         path: 'my',
-        element: <div>마이페이지</div>,
+        element: <MyPage />,
+        loader: myPageLoader,
         handle: { topBarTitle: '마이 페이지' },
       },
       {
-        path: 'my/:userId',
-        element: <div>마이페이지</div>,
+        path: '/my/profile',
+        element: <MyProfile />,
+        loader: myPageLoader,
         handle: { topBarTitle: '내 정보 관리' },
+      },
+      {
+        path: '/my/challenge-detail',
+        element: <ChallengeDetail />,
+        handle: { topBarTitle: '챌린지 상세 조회' },
       },
       {
         path: '/login/signup',
