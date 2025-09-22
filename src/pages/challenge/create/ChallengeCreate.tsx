@@ -5,9 +5,9 @@ import InfoBox from './components/InfoBox.tsx';
 const ChallengeCreate: React.FC = () => {
   return (
     <div className="flex flex-1 flex-col items-start justify-start gap-6 self-stretch px-6">
-      <div className="flex flex-1 flex-col items-center justify-center gap-6 self-stretch">
-        <InfoBox />
-      </div>
+      {/*<div className="flex flex-1 flex-col items-center justify-center gap-6 self-stretch">*/}
+      <InfoBox />
+      {/*</div>*/}
 
       {/* 하단 버튼 */}
       <div className="self-stretch">
