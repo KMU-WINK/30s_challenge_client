@@ -6,6 +6,8 @@ import ChallengeCreate from '../pages/challenge/create/ChallengeCreate.tsx';
 import ChallengeSelect from '../pages/checking/select/ChallengeSelect.tsx';
 import ChallengeVerify from '../pages/checking/verify/ChallengeVerify.tsx';
 import LoginPage from '../pages/login/pages/Login.tsx';
+import Signup from '../pages/login/page/Signup.tsx';
+import SignupPW from '../pages/login/page/SignupPW.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +53,16 @@ export const router = createBrowserRouter([
         path: 'my/:userId',
         element: <div>마이페이지</div>,
         handle: { topBarTitle: '내 정보 관리' },
+      },
+      {
+        path: '/login/signup',
+        element: <Signup />,
+        handle: { topBarTitle: '회원가입' },
+      },
+      {
+        path: '/login/signup/signupPW',
+        element: <SignupPW />,
+        handle: { topBarTitle: '회원가입' },
       },
     ],
   },
