@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { InputHTMLAttributes } from 'react';
 import Button from '../../../components/ui/Button.tsx';
 
@@ -7,11 +8,11 @@ interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const InputField: React.FC<InputFieldProps> = ({ label, ...rest }) => (
-  <div className="inline-flex items-center justify-start gap-8 self-stretch">
+  <div className="flex items-center justify-start gap-8 self-stretch">
     <label className="justify-start text-sm font-medium leading-tight text-black">
       {label}
     </label>
-    <div className="inline-flex flex-1 flex-col items-start justify-start gap-2">
+    <div className="flex flex-1 flex-col items-start justify-start gap-2">
       <div className="inline-flex h-10 items-center justify-start gap-2 self-stretch rounded-lg bg-white px-3 outline outline-1 outline-neutral-300">
         <input
           className="w-full border-none bg-transparent text-xs font-normal leading-none text-neutral-500 focus:outline-none"
@@ -24,6 +25,8 @@ const InputField: React.FC<InputFieldProps> = ({ label, ...rest }) => (
 );
 
 const Signup: React.FC = () => {
+  const navigate = useNavigate();
+
   const [step, setStep] = useState<1 | 2>(1);
   const [form, setForm] = useState({
     username: '',
@@ -40,9 +43,33 @@ const Signup: React.FC = () => {
     setStep(2);
   };
 
-  const submit = () => {
-    // TODO: 가입 API 연동
-    // console.log('submit', form);
+  const submit = async () => {
+    if (!form.password) return;
+
+    try {
+      const res = await fetch('http://localhost:5173/login/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: form.username,
+          email: form.email,
+          password: form.password,
+        }),
+      });
+
+      if (!res.ok) throw new Error('Network response was not ok');
+      const result = await res.json();
+
+      if (result.TOKEN) {
+        localStorage.setItem('token', result.TOKEN);
+        navigate('/');
+      } else {
+        alert('회원가입 실패');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('회원가입 요청 중 오류가 발생했습니다.');
+    }
   };
 
   return (
