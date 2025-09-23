@@ -16,7 +16,7 @@ const MyRankCard: React.FC<MyRankCardProps> = ({
   consecutiveDays,
 }) => {
   return (
-    <div className="inline-flex w-80 items-center justify-center gap-4 rounded-lg bg-slate-100 px-4 py-2 outline outline-[0.50px] outline-blue-300">
+    <div className="inline-flex w-full items-center justify-center gap-4 rounded-lg bg-white px-4 py-2 outline outline-[0.50px] outline-neutral-200">
       {/* 순위 번호 */}
       <div className="justify-start text-xl font-bold leading-7 text-black">
         {rank}
@@ -30,10 +30,9 @@ const MyRankCard: React.FC<MyRankCardProps> = ({
           <div className="justify-start text-center text-sm font-medium leading-tight text-neutral-600">
             {consecutiveDays}일 연속
           </div>
-          {/* 연속 출석 아이콘 */}
           <div className="relative h-4 w-4">
             <Icon
-              icon="heroicons-micro:arrow-trending-up"
+              icon="heroicons:arrow-trending-up-mini"
               className="h-4 w-4 text-neutral-600"
             />
           </div>
