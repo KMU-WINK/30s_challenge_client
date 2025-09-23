@@ -2,7 +2,7 @@ import ChallengeIcon from '../../../../components/ui/ChallengeIcon';
 import { Icon } from '@iconify/react';
 import type { SimpleChallengeResponse } from '../../../../types/api/challenge.ts';
 
-type Props = SimpleChallengeResponse & {
+export type ChallengeCardProps = SimpleChallengeResponse & {
   participants?: number;
   progress?: number;
 };
@@ -49,7 +49,7 @@ export default function ChallengeCard({
   endAt,
   participants = 5,
   progress,
-}: Props) {
+}: ChallengeCardProps) {
   const computed =
     progress ?? progressFromDates(String(startAt), String(endAt));
 

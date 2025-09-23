@@ -48,7 +48,6 @@ export default function ChallengeDetail() {
             <div className="flex flex-col items-start justify-start gap-1">
               <div className="flex items-start justify-start gap-4">
                 <span className="text-base font-semibold">챌린지 이름</span>
-                {/* status 유니온에 '—'가 없다면 조건부 렌더링 */}
                 {challenge?.status && <Badge status={challenge.status} />}
               </div>
               <div className="text-base font-medium text-neutral-500">

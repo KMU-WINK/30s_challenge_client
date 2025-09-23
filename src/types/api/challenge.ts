@@ -16,7 +16,7 @@ export interface ChallengeResponse {
   id: UUID;
   name: string;
   description?: string;
-  code: string;
+  code?: number;
   icon: ChallengeIconLabel;
   startAt: LocalDate;
   endAt: LocalDate;

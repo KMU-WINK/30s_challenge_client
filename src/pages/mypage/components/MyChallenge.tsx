@@ -1,7 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ChallengeCard from './ChallengeCard';
 import type { SimpleChallengeResponse } from '../../../types/api/challenge';
+import { getChallengeList } from '../../../api/challenge';
 
 const parseLocalDate = (s: string) => {
   const normalized = s.replaceAll('.', '-');
@@ -17,30 +18,6 @@ type MyChallengeCardProps = {
   progress: number;
 };
 
-const INITIAL_CHALLENGES: SimpleChallengeResponse[] = [
-  {
-    id: '1',
-    name: '러닝하기',
-    icon: 'run',
-    startAt: '2025-09-01',
-    endAt: '2025-09-30',
-  },
-  {
-    id: '2',
-    name: '7시 기상하기',
-    icon: 'bed',
-    startAt: '2025-08-01',
-    endAt: '2025-08-31',
-  },
-  {
-    id: '3',
-    name: '백준 풀기',
-    icon: 'coding',
-    startAt: '2025-09-10',
-    endAt: '2025-10-10',
-  },
-];
-
 function computeStatusAndProgress(
   startAtStr: string,
   endAtStr: string,
@@ -50,23 +27,33 @@ function computeStatusAndProgress(
   const end = parseLocalDate(endAtStr);
 
   const status: Status = end.getTime() < now.getTime() ? '완료' : '진행중';
-
   const totalMs = end.getTime() - start.getTime();
-  if (totalMs <= 0) {
-    return { status: '완료', progress: 100 };
-  }
+  if (totalMs <= 0) return { status: '완료', progress: 100 };
+
   const elapsedMs = Math.max(
     0,
     Math.min(now.getTime() - start.getTime(), totalMs),
   );
   const progress = Math.round((elapsedMs / totalMs) * 100);
-
   return { status, progress };
 }
 
 export default function MyChallenge() {
   const navigate = useNavigate();
-  const [challenges] = useState<SimpleChallengeResponse[]>(INITIAL_CHALLENGES);
+
+  const [challenges, setChallenges] = useState<SimpleChallengeResponse[]>([]);
+
+  useEffect(() => {
+    let alive = true;
+    getChallengeList()
+      .then((list) => {
+        if (alive) setChallenges(list);
+      })
+      .catch((e) => console.error(e));
+    return () => {
+      alive = false;
+    };
+  }, []);
 
   const cards: MyChallengeCardProps[] = useMemo(() => {
     const now = new Date();
@@ -80,8 +67,8 @@ export default function MyChallenge() {
     });
   }, [challenges]);
 
-  const handleCardClick = () => {
-    navigate('challenge-detail');
+  const handleCardClick = (id: string) => {
+    navigate(`/my/${id}/detail`);
   };
 
   return (
@@ -93,7 +80,7 @@ export default function MyChallenge() {
           <button
             key={id}
             type="button"
-            onClick={() => handleCardClick()}
+            onClick={() => handleCardClick(id)}
             className="w-full cursor-pointer text-left"
           >
             <ChallengeCard name={name} status={status} progress={progress} />

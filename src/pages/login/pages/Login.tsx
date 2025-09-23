@@ -1,14 +1,14 @@
 import Logo from '@src/assets/Logo.png';
-import Logotype from '@src/assets/Logotype.png';
+import LogoType from '@src/assets/LogoType.png';
 import Button from '../../../components/ui/Button.tsx';
 
 export default function LoginPage() {
   return (
     <main className="flex h-dvh flex-col items-center justify-center gap-10 px-14">
       <div className="flex flex-col items-center justify-center gap-2">
-        <div className="flex flex-col items-center justify-start gap-2">
+        <div className="flex flex-col items-center justify-start gap-4">
           <img src={Logo} alt="App Logo" className="h-24 w-24" />
-          <img src={Logotype} alt="App Logo" className="h-5 w-20" />
+          <img src={LogoType} alt="App Logo" className="w-23 h-8" />
         </div>
         <span className="text-sm font-normal text-neutral-500">
           매일매일 성취감 쌓아가기
