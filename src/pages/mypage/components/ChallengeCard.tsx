@@ -38,7 +38,7 @@ export default function ChallengeCard({
       </div>
 
       {/* 오른쪽 섹션: 성공률 텍스트 */}
-      <div className="text-xs font-light">성공률 {progress}%</div>
+      <div className="text-xs font-light">진행률 {progress}%</div>
     </div>
   );
 }

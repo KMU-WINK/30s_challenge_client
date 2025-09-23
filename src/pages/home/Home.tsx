@@ -1,16 +1,21 @@
 import { useState } from 'react';
+import { useLoaderData, Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import Button from '../../components/ui/Button.tsx';
-import ChallengeIcon from '../../components/ui/ChallengeIcon.tsx';
-import RankCard from './components/RankCard.tsx';
-import ChallengeJoinModal from '../challenge/components/ChallengeJoinModal.tsx';
+import Button from '../../components/ui/Button';
+import ChallengeIcon from '../../components/ui/ChallengeIcon';
+import RankCard from './components/RankCard';
+import ChallengeJoinModal from '../challenge/components/ChallengeJoinModal';
+import type { ChallengeListResponse } from '../../types/api/challenge';
 
 export default function Home() {
-  const activeChallenges: Array<{ id: number }> = [];
+  const { challenges } = useLoaderData() as {
+    challenges: ChallengeListResponse;
+  };
 
-  const hasChallenges = activeChallenges.length > 0;
-
+  const hasChallenges = challenges.length > 0;
   const [isOpen, setIsOpen] = useState(false);
+
+  const firstEight = challenges.slice(0, 8);
 
   return (
     <main className="flex min-h-0 w-full flex-1 flex-col items-center gap-6 px-6">
@@ -28,24 +33,26 @@ export default function Home() {
           <Icon
             icon="ic:round-plus"
             onClick={() => setIsOpen(true)}
-            className="h-6 w-6"
+            className="h-6 w-6 cursor-pointer"
           />
         </div>
 
         {hasChallenges ? (
-          <div className="grid grid-cols-4 justify-start gap-5 overflow-y-auto">
-            <ChallengeIcon
-              label="run"
-              size="default"
-              bgColor="bg-primary-background"
-              iconColor="text-primary"
-            />
-            <ChallengeIcon
-              label="bed"
-              size="default"
-              bgColor="bg-primary-background"
-              iconColor="text-primary"
-            />
+          <div className="grid grid-cols-4 justify-start gap-5">
+            {firstEight.map((c) => (
+              <Link
+                key={c.id}
+                to={`/my/${c.id}/detail`}
+                className="flex items-center justify-center"
+              >
+                <ChallengeIcon
+                  label={c.icon}
+                  size="default"
+                  bgColor="bg-primary-background"
+                  iconColor="text-primary"
+                />
+              </Link>
+            ))}
           </div>
         ) : (
           <div className="flex flex-1 items-center justify-center">
@@ -66,11 +73,20 @@ export default function Home() {
           <span className="justify-start text-lg font-semibold">내 랭킹</span>
           <Icon icon="ic:round-plus" className="h-6 w-6" />
         </div>
+
         {hasChallenges ? (
           <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto">
-            <RankCard rank={1} name="러닝하기" streak={15} />
-            <RankCard rank={2} name="7시 기상하기" streak={12} />
-            <RankCard rank={3} name="백준 풀기" streak={7} />
+            {challenges.map((c, i) => (
+              <Link key={c.id} to={`/my/:${c.id}/detail`}>
+                <RankCard
+                  key={c.id}
+                  label={c.icon}
+                  rank={i + 1}
+                  name={c.name}
+                  streak={15 - i * 3}
+                />
+              </Link>
+            ))}
           </div>
         ) : (
           <div className="flex flex-col items-center gap-4 py-8">
@@ -101,6 +117,7 @@ export default function Home() {
           </Button>
         </div>
       )}
+
       {isOpen && <ChallengeJoinModal onClose={() => setIsOpen(false)} />}
     </main>
   );

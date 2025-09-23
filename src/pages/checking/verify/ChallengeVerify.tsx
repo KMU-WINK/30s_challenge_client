@@ -1,7 +1,6 @@
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
 import moment from 'moment';
-import 'moment/locale/ko';
 import Button from '../../../components/ui/Button.tsx';
 import ImageUploadModal from './components/ImageUploadModal.tsx';
 

@@ -1,7 +1,13 @@
 import ChallengeCard from './components/ChallengeCard';
 import { Icon } from '@iconify/react';
+import { Link, useLoaderData } from 'react-router-dom';
+import type { ChallengeListResponse } from '../../../types/api/challenge';
 
 export default function ChallengeSelect() {
+  const { challenges } = useLoaderData() as {
+    challenges: ChallengeListResponse;
+  };
+
   return (
     <main className="flex min-h-0 w-full flex-1 flex-col items-center gap-6 px-6">
       <section className="flex min-h-0 w-full flex-1 flex-col gap-5 rounded-lg bg-white p-4 shadow-base">
@@ -12,30 +18,25 @@ export default function ChallengeSelect() {
           />
           <span className="text-lg font-semibold">진행 중인 챌린지</span>
         </div>
-        <ChallengeCard
-          id="1"
-          name="러닝하기"
-          icon="run"
-          startAt="2025-09-01"
-          endAt="2025-09-30"
-          participants={5}
-        />
-        <ChallengeCard
-          id="2"
-          name="7시 기상하기"
-          icon="bed"
-          startAt="2025-09-01"
-          endAt="2025-10-30"
-          participants={5}
-        />
-        <ChallengeCard
-          id="3"
-          name="백준 풀기"
-          icon="coding"
-          startAt="2025-09-01"
-          endAt="2025-11-30"
-          participants={5}
-        />
+
+        {challenges.length === 0 ? (
+          <div className="py-8 text-center text-sm text-neutral-500">
+            진행 중인 챌린지가 없습니다.
+          </div>
+        ) : (
+          challenges.map((c) => (
+            <Link key={c.id} to={`/checking/${c.id}/verify`} className="block">
+              <ChallengeCard
+                id={c.id}
+                name={c.name}
+                icon={c.icon}
+                startAt={c.startAt}
+                endAt={c.endAt}
+                participants={c.limits}
+              />
+            </Link>
+          ))
+        )}
       </section>
     </main>
   );

@@ -1,14 +1,10 @@
 import { useLoaderData } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-
-interface UserInfoProps {
-  name: string;
-  email: string;
-}
+import type { UserResponse } from '../../../types/api/user.ts';
 
 export default function MyProfile() {
-  const me = useLoaderData() as UserInfoProps;
+  const me = useLoaderData() as UserResponse;
 
   const navigate = useNavigate();
 

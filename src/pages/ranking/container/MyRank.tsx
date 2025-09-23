@@ -3,11 +3,11 @@ import MyRankCard from './MyRankCard.tsx';
 import type { SimpleUserResponse } from '../../../types/api/user.ts';
 
 // Ranking.tsx로부터 'me' 데이터를 props로 받습니다.
-interface MyrankProps {
+interface MyRankProps {
   me: SimpleUserResponse;
 }
 
-export default function Myrank({ me }: MyrankProps) {
+export default function MyRank({ me }: MyRankProps) {
   const myRankingData = {
     rank: 2, // API에서 받아와야 하는 값
     userId: me.id,
