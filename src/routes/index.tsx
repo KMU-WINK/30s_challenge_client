@@ -13,6 +13,7 @@ import ChallengeDetail from '../pages/mypage/pages/ChallengeDetail.tsx';
 // import { getMyInfo } from '../api/user.ts';
 // async function meLoader() { try { return await getMyInfo(); } catch (e) { throw e; } }
 import type { UserResponse } from '../types/api/user.ts';
+import Ranking from '../pages/ranking/Ranking.tsx';
 
 export async function myPageLoader(): Promise<UserResponse> {
   if (import.meta.env.DEV) {
@@ -56,7 +57,8 @@ export const router = createBrowserRouter([
       },
       {
         path: '/ranking',
-        element: <div>랭킹보드 화면</div>,
+        element: <Ranking />,
+        loader: myPageLoader,
         handle: { topBarTitle: '랭킹보드' },
       },
       {
