@@ -10,7 +10,7 @@ export default function ChallengeSelect() {
 
   return (
     <main className="flex min-h-0 w-full flex-1 flex-col items-center gap-6 px-6">
-      <section className="flex min-h-0 w-full flex-1 flex-col gap-5 rounded-lg bg-white p-4 shadow-base">
+      <section className="flex max-h-[78dvh] min-h-0 w-full flex-1 flex-col gap-5 overflow-y-auto rounded-lg bg-white p-4 shadow-base">
         <div className="flex items-center justify-start gap-3">
           <Icon
             icon="streamline-plump-color:loading-circle"
@@ -25,7 +25,11 @@ export default function ChallengeSelect() {
           </div>
         ) : (
           challenges.map((c) => (
-            <Link key={c.id} to={`/checking/${c.id}/verify`} className="block">
+            <Link
+              key={c.id}
+              to={`/checking/${c.id}/verify`}
+              className="block transition hover:-translate-y-0.5 hover:shadow-base"
+            >
               <ChallengeCard
                 id={c.id}
                 name={c.name}

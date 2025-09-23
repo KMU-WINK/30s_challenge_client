@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useLoaderData, Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import Button from '../../components/ui/Button';
 import ChallengeIcon from '../../components/ui/ChallengeIcon';
 import RankCard from './components/RankCard';
 import ChallengeJoinModal from '../challenge/components/ChallengeJoinModal';
 import type { ChallengeListResponse } from '../../types/api/challenge';
+import type { UserResponse } from '../../types/api/user.ts';
 
 export default function Home() {
-  const { challenges } = useLoaderData() as {
+  const { me, challenges } = useLoaderData() as {
+    me: UserResponse;
     challenges: ChallengeListResponse;
   };
 
@@ -18,7 +19,42 @@ export default function Home() {
   const firstEight = challenges.slice(0, 8);
 
   return (
-    <main className="flex min-h-0 w-full flex-1 flex-col items-center gap-6 px-6">
+    <main className="flex min-h-0 w-full flex-1 flex-col gap-6 px-6">
+      <div className="flex flex-col items-start justify-start gap-1">
+        <p className="text-lg font-semibold text-neutral-700">
+          안녕하세요, {me.name}님 👋
+        </p>
+        <p className="text-neutral-400">오늘도 30Days 챌린지에 도전해보세요!</p>
+      </div>
+      <section className="flex w-full gap-3">
+        <Link
+          to="/challenge/join"
+          className="group flex w-full items-center gap-3 rounded-lg bg-white p-3 outline outline-[0.5px] outline-neutral-200 transition hover:-translate-y-0.5 hover:shadow-base"
+        >
+          <div className="rounded-lg bg-indigo-100 p-2 group-hover:bg-indigo-200">
+            <Icon icon="ic:round-plus" className="h-6 w-6 text-indigo-600" />
+          </div>
+          <div className="text-start">
+            <p className="font-semibold">챌린지 개설</p>
+            <p className="text-sm text-neutral-500">챌린지 만들기</p>
+          </div>
+        </Link>
+
+        <button
+          type="button"
+          onClick={() => setIsOpen(true)}
+          className="group flex w-full items-center gap-4 rounded-lg bg-white p-4 outline outline-[0.5px] outline-neutral-200 transition hover:-translate-y-0.5 hover:shadow-base"
+        >
+          <div className="rounded-lg bg-blue-100 p-2 group-hover:bg-blue-200">
+            <Icon icon="ion:people-outline" className="h-6 w-6 text-blue-600" />
+          </div>
+          <div className="text-start">
+            <p className="font-semibold">챌린지 참여</p>
+            <p className="text-sm text-neutral-500">챌린지 참여하기</p>
+          </div>
+        </button>
+      </section>
+
       <section className="flex w-full flex-col gap-5 rounded-lg bg-white p-4 shadow-base">
         <div className="flex w-full items-center justify-between">
           <div className="flex items-center justify-start gap-3">
@@ -30,11 +66,9 @@ export default function Home() {
               진행 중인 챌린지
             </span>
           </div>
-          <Icon
-            icon="ic:round-plus"
-            onClick={() => setIsOpen(true)}
-            className="h-6 w-6 cursor-pointer"
-          />
+          <Link to="/checking">
+            <Icon icon="ic:round-plus" className="h-6 w-6 cursor-pointer" />
+          </Link>
         </div>
 
         {hasChallenges ? (
@@ -48,7 +82,7 @@ export default function Home() {
                 <ChallengeIcon
                   label={c.icon}
                   size="default"
-                  bgColor="bg-primary-background"
+                  bgColor="bg-primary-background transition hover:-translate-y-0.5 hover:shadow-base"
                   iconColor="text-primary"
                 />
               </Link>
@@ -68,18 +102,23 @@ export default function Home() {
         )}
       </section>
 
-      <section className="flex min-h-0 w-full flex-1 flex-col gap-5 rounded-lg bg-white p-4 shadow-base">
-        <div className="flex w-full items-center justify-between">
-          <span className="justify-start text-lg font-semibold">내 랭킹</span>
-          <Icon icon="ic:round-plus" className="h-6 w-6" />
+      <section className="flex max-h-[40dvh] w-full flex-1 flex-col gap-5 overflow-y-auto rounded-lg bg-white p-4 shadow-base">
+        <div className="flex items-center justify-between">
+          <span className="text-lg font-semibold">내 랭킹</span>
+          <Link to="/ranking">
+            <Icon icon="ic:round-plus" className="h-6 w-6 cursor-pointer" />
+          </Link>
         </div>
 
         {hasChallenges ? (
-          <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto">
+          <div className="min-h-0 flex-1 space-y-5 overflow-y-auto">
             {challenges.map((c, i) => (
-              <Link key={c.id} to={`/my/:${c.id}/detail`}>
+              <Link
+                key={c.id}
+                to={`/my/${c.id}/detail`}
+                className="block transition hover:-translate-y-0.5 hover:shadow-base"
+              >
                 <RankCard
-                  key={c.id}
                   label={c.icon}
                   rank={i + 1}
                   name={c.name}
@@ -89,34 +128,13 @@ export default function Home() {
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center gap-4 py-8">
+          <div className="flex flex-1 items-center justify-center">
             <p className="text-sm font-medium text-neutral-600">
               진행중인 챌린지가 없습니다.
             </p>
           </div>
         )}
       </section>
-
-      {!hasChallenges && (
-        <div className="flex w-full items-center justify-center gap-6">
-          <Button
-            onClick={() => setIsOpen(true)}
-            color="white"
-            size="default"
-            className="w-full"
-          >
-            참여하기
-          </Button>
-          <Button
-            to="/challenge/join"
-            color="primary"
-            size="default"
-            className="w-full"
-          >
-            개설하기
-          </Button>
-        </div>
-      )}
 
       {isOpen && <ChallengeJoinModal onClose={() => setIsOpen(false)} />}
     </main>

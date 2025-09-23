@@ -1,8 +1,8 @@
 import RankCard from './RankCard.tsx';
-import type { SimpleUserResponse } from '../../../types/api/user.ts';
+import type { UserResponse } from '../../../types/api/user.ts';
 
 interface AllRankProps {
-  me: SimpleUserResponse;
+  me: UserResponse;
 }
 
 const rankingData = [
@@ -13,7 +13,6 @@ const rankingData = [
 ];
 
 export default function AllRank({ me }: AllRankProps) {
-  //순위 정렬
   const sortedRanking = [...rankingData].sort((a, b) => a.rank - b.rank);
 
   return (

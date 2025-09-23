@@ -81,7 +81,7 @@ export default function MyChallenge() {
             key={id}
             type="button"
             onClick={() => handleCardClick(id)}
-            className="w-full cursor-pointer text-left"
+            className="w-full cursor-pointer text-start transition hover:-translate-y-0.5 hover:shadow-base"
           >
             <ChallengeCard name={name} status={status} progress={progress} />
           </button>

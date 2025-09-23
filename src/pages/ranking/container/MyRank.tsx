@@ -1,18 +1,17 @@
 import { Icon } from '@iconify/react';
 import MyRankCard from './MyRankCard.tsx';
-import type { SimpleUserResponse } from '../../../types/api/user.ts';
+import type { UserResponse } from '../../../types/api/user.ts';
 
-// Ranking.tsx로부터 'me' 데이터를 props로 받습니다.
 interface MyRankProps {
-  me: SimpleUserResponse;
+  me: UserResponse;
 }
 
 export default function MyRank({ me }: MyRankProps) {
   const myRankingData = {
-    rank: 2, // API에서 받아와야 하는 값
+    rank: 2,
     userId: me.id,
     name: me.name,
-    consecutiveDays: 15, // API에서 받아와야 하는 값
+    streak: 15,
   };
 
   return (
@@ -28,7 +27,7 @@ export default function MyRank({ me }: MyRankProps) {
           rank={myRankingData.rank}
           userId={myRankingData.userId}
           name={myRankingData.name}
-          consecutiveDays={myRankingData.consecutiveDays}
+          consecutiveDays={myRankingData.streak}
         />
       </div>
     </section>
