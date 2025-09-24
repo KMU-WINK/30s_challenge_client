@@ -1,12 +1,17 @@
 import { Icon } from '@iconify/react';
 import MyRankCard from './MyRankCard.tsx';
 import type { UserResponse } from '../../../types/api/user.ts';
+import { useLoaderData } from 'react-router-dom';
 
-interface MyRankProps {
-  me: UserResponse;
-}
+export default function MyRank() {
+  const data = useLoaderData() as { me?: UserResponse; challenges?: never[] };
 
-export default function MyRank({ me }: MyRankProps) {
+  if (!data?.me) {
+    return <div>내 정보를 불러오는 중...</div>;
+  }
+
+  const { me } = data;
+
   const myRankingData = {
     rank: 2,
     userId: me.id,

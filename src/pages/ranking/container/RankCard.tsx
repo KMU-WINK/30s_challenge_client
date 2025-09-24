@@ -19,7 +19,7 @@ const RankCard: React.FC<RankCardProps> = ({
   isCurrentUser,
 }) => {
   const cardClasses = classnames(
-    'inline-flex w-80 items-center justify-center gap-4 rounded-lg px-4 py-2 outline outline-[0.50px]',
+    'inline-flex w-full items-center justify-center gap-4 rounded-lg px-4 py-2 outline outline-[0.50px]',
     {
       // isCurrentUser 값에 따라 클래스를 조건부로 적용합니다.
       'bg-blue-100 outline-blue-300': isCurrentUser,
@@ -43,10 +43,7 @@ const RankCard: React.FC<RankCardProps> = ({
             {consecutiveDays}일 연속
           </div>
           <div className="relative h-4 w-4">
-            <Icon
-              icon="heroicons:arrow-trending-up-mini"
-              className="h-4 w-4 text-neutral-600"
-            />
+            <Icon icon="fluent:arrow-trending-12-filled" className="h-3 w-3" />
           </div>
         </div>
       </div>

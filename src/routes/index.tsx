@@ -79,8 +79,10 @@ export const router = createBrowserRouter([
       {
         path: '/ranking',
         element: <Ranking />,
+        loader: myWithChallengesLoader,
         handle: { topBarTitle: '랭킹보드' },
       },
+
       {
         path: 'my',
         element: <MyPage />,
