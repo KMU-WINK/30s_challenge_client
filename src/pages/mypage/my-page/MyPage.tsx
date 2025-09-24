@@ -1,6 +1,6 @@
 import { useLoaderData } from 'react-router-dom';
-import ProfileCard from '../components/ProfileCard.tsx';
-import MyChallenge from '../components/MyChallenge.tsx';
+import ProfileCard from './components/ProfileCard.tsx';
+import MyChallenge from './components/MyChallenge.tsx';
 import type { UserResponse } from '../../../types/api/user.ts';
 
 export default function MyPage() {

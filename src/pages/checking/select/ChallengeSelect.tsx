@@ -34,8 +34,8 @@ export default function ChallengeSelect() {
                 id={c.id}
                 name={c.name}
                 icon={c.icon}
-                startAt={c.startAt}
-                endAt={c.endAt}
+                startedAt={c.startedAt}
+                endedAt={c.endedAt}
                 participants={c.limits}
               />
             </Link>

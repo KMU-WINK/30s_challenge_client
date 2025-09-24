@@ -21,9 +21,10 @@ export default function Home() {
   return (
     <main className="flex min-h-0 w-full flex-1 flex-col gap-6 px-6">
       <div className="flex flex-col items-start justify-start gap-1">
-        <p className="text-lg font-semibold text-neutral-700">
-          안녕하세요, {me.name}님 👋
-        </p>
+        <div className="flex items-center justify-center gap-2 text-lg font-semibold text-neutral-700">
+          안녕하세요, {me.name}님
+          <Icon icon="mdi:greeting-outline" className="h-5 w-5" />
+        </div>
         <p className="text-neutral-400">오늘도 30Days 챌린지에 도전해보세요!</p>
       </div>
       <section className="flex w-full gap-3">

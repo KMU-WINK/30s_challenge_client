@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import Avatar from '../../../components/ui/Avatar.tsx';
-import type { SimpleUserResponse } from '../../../types/api/user.ts';
+import Avatar from '../../../../components/ui/Avatar.tsx';
+import type { SimpleUserResponse } from '../../../../types/api/user.ts';
 
 export default function ProfileCard({ id, name }: SimpleUserResponse) {
   const navigate = useNavigate();

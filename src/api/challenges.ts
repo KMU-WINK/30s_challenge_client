@@ -1,29 +1,42 @@
-import type { ChallengeIconLabel } from '../types/shared/icons.ts';
+import { api } from './client';
+import type {
+  ChallengeListResponse,
+  CreateChallengeRequest,
+  CreateChallengeResponse,
+} from '../types/api/challenge';
 
-interface CreateChallengeRequest {
-  name: string;
-  description: string;
-  icon: ChallengeIconLabel;
-  startedAt: string;
-  endedAt: string;
-  limits: number;
+export async function getChallengeList(): Promise<ChallengeListResponse> {
+  if (import.meta.env.DEV) {
+    return [
+      {
+        id: '1',
+        name: '러닝하기',
+        icon: 'run',
+        startedAt: '2025-08-01',
+        endedAt: '2025-09-01',
+        limits: 5,
+      },
+      {
+        id: '2',
+        name: '7시 기상',
+        icon: 'bed',
+        startedAt: '2025-09-01',
+        endedAt: '2025-10-30',
+        limits: 5,
+      },
+      {
+        id: '3',
+        name: '백준 풀기',
+        icon: 'coding',
+        startedAt: '2025-09-01',
+        endedAt: '2025-11-30',
+        limits: 5,
+      },
+    ];
+  }
+  return api.get<ChallengeListResponse>('/challenges');
 }
 
-export async function createChallenge(challengeData: CreateChallengeRequest) {
-  const API_BASE_URL = 'http://localhost:8080/api';
-
-  const response = await fetch(`${API_BASE_URL}/users/challenges`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(challengeData),
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || '챌린지 개설에 실패했습니다.');
-  }
-
-  return response.json();
+export function createChallenge(data: CreateChallengeRequest) {
+  return api.post<CreateChallengeResponse>('/users/challenges', data);
 }

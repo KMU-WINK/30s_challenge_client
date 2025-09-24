@@ -1,4 +1,4 @@
-import Badge from '../../../components/ui/Badge.tsx';
+import Badge from '../../../../components/ui/Badge.tsx';
 import { Icon } from '@iconify/react';
 
 interface ChallengeCardProps {

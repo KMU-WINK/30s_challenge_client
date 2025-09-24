@@ -45,13 +45,13 @@ function progressFromDates(startAt: string, endAt: string, now = new Date()) {
 export default function ChallengeCard({
   name,
   icon,
-  startAt,
-  endAt,
+  startedAt,
+  endedAt,
   participants = 5,
   progress,
 }: ChallengeCardProps) {
   const computed =
-    progress ?? progressFromDates(String(startAt), String(endAt));
+    progress ?? progressFromDates(String(startedAt), String(endedAt));
 
   return (
     <div className="flex items-center gap-4 rounded-lg bg-white p-5 outline outline-[0.50px] outline-offset-[-0.50px] outline-neutral-200">
@@ -75,7 +75,7 @@ export default function ChallengeCard({
         </div>
 
         <span className="text-sm font-normal text-neutral-500">
-          {startAt} ~ {endAt}
+          {startedAt} ~ {endedAt}
         </span>
 
         <div className="mt-1 h-3.5 w-full rounded-[5px] bg-neutral-200">

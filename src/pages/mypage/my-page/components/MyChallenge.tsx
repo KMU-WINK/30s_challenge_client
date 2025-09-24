@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ChallengeCard from './ChallengeCard';
-import type { SimpleChallengeResponse } from '../../../types/api/challenge';
-import { getChallengeList } from '../../../api/challenge';
+import ChallengeCard from './ChallengeCard.tsx';
+import type { SimpleChallengeResponse } from '../../../../types/api/challenge.ts';
+import { getChallengeList } from '../../../../api/challenge.ts';
 
 const parseLocalDate = (s: string) => {
   const normalized = s.replaceAll('.', '-');
@@ -59,8 +59,8 @@ export default function MyChallenge() {
     const now = new Date();
     return challenges.map((c) => {
       const { status, progress } = computeStatusAndProgress(
-        c.startAt,
-        c.endAt,
+        c.startedAt,
+        c.endedAt,
         now,
       );
       return { id: c.id, name: c.name, status, progress };

@@ -1,9 +1,9 @@
 import { useLoaderData } from 'react-router-dom';
-import Avatar from '../../../components/ui/Avatar';
-import Badge from '../../../components/ui/Badge';
+import Avatar from '../../../components/ui/Avatar.tsx';
+import Badge from '../../../components/ui/Badge.tsx';
 import ChallengeIcon from '../../../components/ui/ChallengeIcon.tsx';
-import type { ChallengeResponse } from '../../../types/api/challenge';
-import type { Status } from '../components/MyChallenge.tsx';
+import type { ChallengeResponse } from '../../../types/api/challenge.ts';
+import type { Status } from '../my-page/components/MyChallenge.tsx';
 
 type Participant = { id: string; name: string };
 
@@ -66,7 +66,9 @@ export default function ChallengeDetail() {
           <div className="flex flex-col items-start justify-start gap-1">
             <span className="text-base font-semibold">챌린지 기간</span>
             <div className="text-base font-medium text-neutral-500">
-              {(challenge?.startAt ?? '—') + ' ~ ' + (challenge?.endAt ?? '—')}
+              {(challenge?.startedAt ?? '—') +
+                ' ~ ' +
+                (challenge?.endedAt ?? '—')}
             </div>
           </div>
 

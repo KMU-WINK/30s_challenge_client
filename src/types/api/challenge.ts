@@ -8,8 +8,8 @@ export interface SimpleChallengeResponse {
   id: UUID;
   name: string;
   icon: ChallengeIconLabel;
-  startAt: LocalDate;
-  endAt: LocalDate;
+  startedAt: LocalDate;
+  endedAt: LocalDate;
 }
 
 export interface ChallengeResponse {
@@ -18,8 +18,8 @@ export interface ChallengeResponse {
   description?: string;
   code?: number;
   icon: ChallengeIconLabel;
-  startAt: LocalDate;
-  endAt: LocalDate;
+  startedAt: LocalDate;
+  endedAt: LocalDate;
   limits: number;
 }
 
@@ -27,8 +27,19 @@ export interface CreateChallengeRequest {
   name: string;
   description?: string;
   icon: ChallengeIconLabel;
-  startAt: LocalDate;
-  endAt: LocalDate;
+  startedAt: LocalDate;
+  endedAt: LocalDate;
+  limits: number;
+}
+
+export interface CreateChallengeResponse {
+  id: UUID;
+  name: string;
+  description?: string;
+  code: string;
+  icon: ChallengeIconLabel;
+  startedAt: LocalDate;
+  endedAt: LocalDate;
   limits: number;
 }
 
