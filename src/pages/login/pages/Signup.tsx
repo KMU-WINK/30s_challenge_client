@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { InputHTMLAttributes } from 'react';
+import { api } from '../../../api/client.ts';
 import Button from '../../../components/ui/Button.tsx';
 
 interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -29,17 +30,18 @@ const Signup: React.FC = () => {
 
   const [step, setStep] = useState<1 | 2>(1);
   const [form, setForm] = useState({
-    username: '',
+    id: '',
     email: '',
     password: '',
   });
+  const [loading, setLoading] = useState(false);
 
   const onChange =
     (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
       setForm((prev) => ({ ...prev, [key]: e.target.value }));
 
   const goNext = () => {
-    if (!form.username || !form.email) return;
+    if (!form.id || !form.email) return;
     setStep(2);
   };
 
@@ -47,28 +49,23 @@ const Signup: React.FC = () => {
     if (!form.password) return;
 
     try {
-      const res = await fetch('http://localhost:5173/login/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: form.username,
-          email: form.email,
-          password: form.password,
-        }),
+      setLoading(true);
+      const res = await api.post<{ token?: string }>('/auth/signup', {
+        username: form.id, // 또는 id: form.username
+        email: form.email,
+        password: form.password,
       });
 
-      if (!res.ok) throw new Error('Network response was not ok');
-      const result = await res.json();
-
-      if (result.TOKEN) {
-        localStorage.setItem('token', result.TOKEN);
-        navigate('/');
+      if (res.token) {
+        localStorage.setItem('token', res.token);
+        navigate('/', { replace: true });
       } else {
-        alert('회원가입 실패');
+        navigate('/login', { replace: true });
       }
-    } catch (err) {
-      console.error(err);
-      alert('회원가입 요청 중 오류가 발생했습니다.');
+    } catch {
+      alert('회원가입에 실패했습니다.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -93,8 +90,8 @@ const Signup: React.FC = () => {
           label="아이디"
           id="username"
           type="text"
-          value={form.username}
-          onChange={onChange('username')}
+          value={form.id}
+          onChange={onChange('id')}
         />
         <InputField
           label="이메일"
@@ -121,6 +118,7 @@ const Signup: React.FC = () => {
             color="primary"
             className="w-full"
             onClick={goNext}
+            disabled={!form.id || !form.email}
           >
             다음
           </Button>
@@ -130,6 +128,7 @@ const Signup: React.FC = () => {
             color="primary"
             className="w-full"
             onClick={submit}
+            disabled={loading || !form.password}
           >
             가입하기
           </Button>
